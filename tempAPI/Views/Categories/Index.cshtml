@@ -2,7 +2,6 @@
 
 @model List<Category> //maps Model to a list of Category objects that is passed from the controller
 
-
 @section title{
     <h3>
         Categories
@@ -32,7 +31,12 @@
                         <a class=" btn btn-link" asp-controller="categories" asp-action="edit" asp-route-id="@category.CategoryId">Edit</a>
                     </td>
                     <td>
-                        <a class=" btn btn-link" asp-controller="categories" asp-action="delte" asp-route-id="@category.CategoryId" onclick="return ConfirmDelete">Delete</a>
+                        <a class="btn btn-link"
+                           asp-controller="categories"
+                           asp-action="delete"
+                           asp-route-categoryId="@category.CategoryId"
+                           onclick="return ConfirmDelete();">Delete</a>
+
                     </td>
                 </tr>
             }

@@ -14,6 +14,10 @@ namespace tempAPI.Controllers
         [HttpGet]      //it is http get by default even if dont mention anything
         public IActionResult Edit([FromRoute] int? id)
         {
+
+            //for partial view
+            ViewBag.Action = "edit"; //ie _category.
+
             var category = CategoriesRepository.GetCategoryById(id.HasValue ? id.Value : 0);
             return View(category);
         }
@@ -33,6 +37,8 @@ namespace tempAPI.Controllers
 
         public IActionResult Add()
         {
+            ViewBag.Action = "add";
+
             return View();
         }
 
@@ -47,9 +53,12 @@ namespace tempAPI.Controllers
             return View(category);
         }
 
+        [HttpGet]
         public IActionResult Delete(int categoryId)
         {
-
+            CategoriesRepository.DeleteCategory(categoryId);
+            return RedirectToAction(nameof(Index));
         }
+
     }
 }
