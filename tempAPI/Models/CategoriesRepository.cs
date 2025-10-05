@@ -19,7 +19,7 @@
 
         public static Category? GetCategoryById(int categoryID)
         {
-            var category = _categories.FirstOrDefault(c => c.CategoryId == categoryID);
+            var category = _categories.FirstOrDefault(x => x.CategoryId == categoryID);
             if (category != null)
             {
                 return new Category
@@ -37,7 +37,7 @@
         {
             if (categoryId != category.CategoryId) return;
 
-            var categoryToUpdate = GetCategoryById(categoryId);
+            var categoryToUpdate = _categories.FirstOrDefault(x => x.CategoryId == categoryId);
             if (categoryToUpdate != null)
             {
                 categoryToUpdate.Name = category.Name;
